@@ -1,0 +1,342 @@
+[
+    {
+        "id": "abdd2a876d4941c6",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c8f2a5d4085871ff",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mosquitto",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "node/inicio",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "Inicio Node-RED",
+        "birthMsg": {},
+        "closeTopic": "node/fin",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "Finalizo Node-RED",
+        "closeMsg": {},
+        "willTopic": "node/desconexion",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "Desconexion Node-RED",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "39e7e15fa841533a",
+        "type": "ui-base",
+        "name": "Mi panel de control",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "e23e22e1bbe7a521",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#fcfcfd",
+            "primary": "#0d74ce",
+            "bgPage": "#f9f9fb",
+            "groupBg": "#ffffff",
+            "groupOutline": "#d9d9e0"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "1f6c9fe28410f42b",
+        "type": "ui-page",
+        "name": "Página de datos",
+        "ui": "39e7e15fa841533a",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "e23e22e1bbe7a521",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "tabs": [],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "5b20fc79da76e92a",
+        "type": "ui-group",
+        "name": "Temperatura",
+        "page": "1f6c9fe28410f42b",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "tab": ""
+    },
+    {
+        "id": "22df67cf9a0b67cb",
+        "type": "inject",
+        "z": "abdd2a876d4941c6",
+        "name": "Marca temporal",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 320,
+        "y": 200,
+        "wires": [
+            [
+                "7749d237d33e43b9",
+                "c8101e7b1f4c8ea8"
+            ]
+        ]
+    },
+    {
+        "id": "7749d237d33e43b9",
+        "type": "debug",
+        "z": "abdd2a876d4941c6",
+        "name": "Salida depuración",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "c8101e7b1f4c8ea8",
+        "type": "mqtt out",
+        "z": "abdd2a876d4941c6",
+        "name": "MQTT tiempo",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c8f2a5d4085871ff",
+        "x": 900,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b784c343bfc60104",
+        "type": "mqtt in",
+        "z": "abdd2a876d4941c6",
+        "name": "MQTT entrada",
+        "topic": "sbd/prueba",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c8f2a5d4085871ff",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 460,
+        "wires": [
+            [
+                "7749d237d33e43b9",
+                "6c9ed24c330c36d7",
+                "a2a72e7f0fb82de5"
+            ]
+        ]
+    },
+    {
+        "id": "6c9ed24c330c36d7",
+        "type": "ui-gauge",
+        "z": "abdd2a876d4941c6",
+        "name": "Medidor",
+        "group": "5b20fc79da76e92a",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "ºC",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "-20",
+                "color": "#5394ea",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "25",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "35",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": "-20",
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 700,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a2a72e7f0fb82de5",
+        "type": "ui-chart",
+        "z": "abdd2a876d4941c6",
+        "group": "5b20fc79da76e92a",
+        "name": "Gráfica",
+        "label": "Historico",
+        "order": 2,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "Temperatura",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "-20",
+        "ymax": "50",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "cross",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "smooth",
+        "x": 700,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    }
+]

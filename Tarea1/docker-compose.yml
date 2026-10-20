@@ -1,0 +1,32 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto_t1
+    restart: unless-stopped
+    ports:
+      - "${MOSQUITTO_PORT:-1883}:1883"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/log:/mosquitto/log
+      - ./mosquitto/data:/mosquitto/data
+    networks:
+      - t1-lan
+
+  node-red:
+    image: nodered/node-red
+    container_name: node-red_t1
+    restart: unless-stopped
+    environment:
+      - TZ=${TIMEZONE:-Europe/Madrid}
+    ports:
+      - "${NODE_RED_PORT:-1880}:1880"
+    volumes:
+      - ./node-red/data:/data
+    networks:
+      - t1-lan
+    depends_on:
+      - mosquitto
+
+networks:
+  t1-lan:
+    driver: bridge
