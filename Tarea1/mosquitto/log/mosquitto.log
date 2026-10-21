@@ -371,3 +371,5 @@ To fix this, use `chmod 0700 /mosquitto/config/passwd`.
 2026-10-20T19:44:58: Client noderede3e6a609f0b1d4ed [172.18.0.3:45066] disconnected.
 2026-10-20T19:44:58: New connection from 172.18.0.3:52728 on port 1883.
 2026-10-20T19:44:58: New client connected from 172.18.0.3:52728 as noderedfcd5de5c194fcb4f (p4, c1, k60, u'admin').
+2026-10-20T20:01:26: mosquitto version 2.1.2 terminating
+2026-10-20T20:01:26: Saving in-memory database to /mosquitto/data//mosquitto.db.
