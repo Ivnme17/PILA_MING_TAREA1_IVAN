@@ -10,7 +10,7 @@
     {
         "id": "c8f2a5d4085871ff",
         "type": "mqtt-broker",
-        "name": "",
+        "name": "T1",
         "broker": "mosquitto",
         "port": 1883,
         "clientid": "",
@@ -130,10 +130,10 @@
         "tab": ""
     },
     {
-        "id": "22df67cf9a0b67cb",
+        "id": "221cb54a1d3266e2",
         "type": "inject",
         "z": "abdd2a876d4941c6",
-        "name": "Marca temporal",
+        "name": "marca tiempo",
         "props": [
             {
                 "p": "payload"
@@ -150,20 +150,100 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 320,
-        "y": 200,
+        "x": 150,
+        "y": 140,
         "wires": [
             [
-                "7749d237d33e43b9",
-                "c8101e7b1f4c8ea8"
+                "9ce89f48f0fa23f6"
             ]
         ]
     },
     {
-        "id": "7749d237d33e43b9",
+        "id": "9ce89f48f0fa23f6",
+        "type": "function",
+        "z": "abdd2a876d4941c6",
+        "name": "function 1",
+        "func": "let fecha = new Date(msg.payload);\n\nmsg.fecha = fecha;\nmsg.payload = {\n    timestamp: msg.payload,\n    iso: fecha.toISOString(),\n    dia: fecha.getDate(),\n    mes: fecha.getMonth() + 1,\n    anio: fecha.getFullYear(),\n    hora: fecha.getHours(),\n    minutos: fecha.getMinutes(),\n    segundos: fecha.getSeconds()\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "9660561a1f972000"
+            ]
+        ]
+    },
+    {
+        "id": "9660561a1f972000",
+        "type": "function",
+        "z": "abdd2a876d4941c6",
+        "name": "function 2",
+        "func": "let f = msg.fecha;\nlet p = msg.payload;\n\nlet diasSemana = [\"domingo\", \"lunes\", \"martes\", \"miércoles\", \"jueves\", \"viernes\", \"sábado\"];\n\nmsg.payload = {\n    fecha: f.toLocaleDateString(\"es-ES\"),\n    hora: f.toLocaleTimeString(\"es-ES\"),\n    diaSemana: diasSemana[f.getDay()],\n    mensaje: \"Hoy es \" + diasSemana[f.getDay()] + \" \" + p.dia + \"/\" + p.mes + \"/\" + p.anio +\n             \" y son las \" + f.toLocaleTimeString(\"es-ES\"),\n    iso: p.iso\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 140,
+        "wires": [
+            [
+                "e76b93987448837d"
+            ]
+        ]
+    },
+    {
+        "id": "2a57d929164dcb05",
+        "type": "mqtt in",
+        "z": "abdd2a876d4941c6",
+        "name": "",
+        "topic": "Temperatura",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c8f2a5d4085871ff",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "7c98fd4215cfc839"
+            ]
+        ]
+    },
+    {
+        "id": "7c98fd4215cfc839",
+        "type": "function",
+        "z": "abdd2a876d4941c6",
+        "name": "function 3",
+        "func": "let lectura = Number(msg.payload)\nlet aula = msg.topic || \"Desconocida\"\n\nmsg.payload = {\n    ubicacion: aula,\n    medidas: {\n        celsius: lectura,\n        fahrenheit: Number((((lectura * 9)/5)+32).toFixed(2)),\n        kelvin: Number((lectura + 273.15).toFixed(2))\n    },\n    metadatos: {\n        timestamp: new Date().toISOString(),\n        origen: \"Node-RED\",\n        valido: !isNaN(lectura)\n    }\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 260,
+        "wires": [
+            [
+                "3481f1c91b07df22"
+            ]
+        ]
+    },
+    {
+        "id": "e76b93987448837d",
         "type": "debug",
         "z": "abdd2a876d4941c6",
-        "name": "Salida depuración",
+        "name": "debug 1",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -172,171 +252,24 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 930,
-        "y": 360,
+        "x": 920,
+        "y": 140,
         "wires": []
     },
     {
-        "id": "c8101e7b1f4c8ea8",
-        "type": "mqtt out",
+        "id": "3481f1c91b07df22",
+        "type": "debug",
         "z": "abdd2a876d4941c6",
-        "name": "MQTT tiempo",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "c8f2a5d4085871ff",
-        "x": 900,
-        "y": 240,
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 260,
         "wires": []
-    },
-    {
-        "id": "b784c343bfc60104",
-        "type": "mqtt in",
-        "z": "abdd2a876d4941c6",
-        "name": "MQTT entrada",
-        "topic": "sbd/prueba",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "c8f2a5d4085871ff",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 280,
-        "y": 460,
-        "wires": [
-            [
-                "7749d237d33e43b9",
-                "6c9ed24c330c36d7",
-                "a2a72e7f0fb82de5"
-            ]
-        ]
-    },
-    {
-        "id": "6c9ed24c330c36d7",
-        "type": "ui-gauge",
-        "z": "abdd2a876d4941c6",
-        "name": "Medidor",
-        "group": "5b20fc79da76e92a",
-        "order": 1,
-        "value": "payload",
-        "valueType": "msg",
-        "width": 3,
-        "height": 3,
-        "gtype": "gauge-half",
-        "gstyle": "needle",
-        "title": "Temperatura",
-        "alwaysShowTitle": false,
-        "floatingTitlePosition": "top-left",
-        "units": "ºC",
-        "icon": "",
-        "prefix": "",
-        "suffix": "",
-        "segments": [
-            {
-                "from": "-20",
-                "color": "#5394ea",
-                "text": "",
-                "textType": "label"
-            },
-            {
-                "from": "0",
-                "color": "#5cd65c",
-                "text": "",
-                "textType": "label"
-            },
-            {
-                "from": "25",
-                "color": "#ffc800",
-                "text": "",
-                "textType": "label"
-            },
-            {
-                "from": "35",
-                "color": "#ea5353",
-                "text": "",
-                "textType": "label"
-            }
-        ],
-        "min": "-20",
-        "max": "50",
-        "sizeThickness": 16,
-        "sizeGap": 4,
-        "sizeKeyThickness": 8,
-        "styleRounded": true,
-        "styleGlow": false,
-        "className": "",
-        "x": 700,
-        "y": 640,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a2a72e7f0fb82de5",
-        "type": "ui-chart",
-        "z": "abdd2a876d4941c6",
-        "group": "5b20fc79da76e92a",
-        "name": "Gráfica",
-        "label": "Historico",
-        "order": 2,
-        "chartType": "line",
-        "category": "topic",
-        "categoryType": "msg",
-        "xAxisLabel": "",
-        "xAxisProperty": "",
-        "xAxisPropertyType": "timestamp",
-        "xAxisType": "time",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "",
-        "xmax": "",
-        "yAxisLabel": "Temperatura",
-        "yAxisProperty": "payload",
-        "yAxisPropertyType": "msg",
-        "ymin": "-20",
-        "ymax": "50",
-        "bins": 10,
-        "action": "append",
-        "stackSeries": false,
-        "pointShape": "cross",
-        "pointRadius": 4,
-        "showLegend": true,
-        "removeOlder": 1,
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "",
-        "colors": [
-            "#0095ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
-        "width": 6,
-        "height": 8,
-        "className": "",
-        "interpolation": "smooth",
-        "x": 700,
-        "y": 720,
-        "wires": [
-            []
-        ]
     }
 ]

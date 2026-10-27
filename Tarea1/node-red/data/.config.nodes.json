@@ -731,5 +731,66 @@
                 "file": "/data/node_modules/@flowfuse/node-red-dashboard/nodes/widgets/ui_progress.js"
             }
         }
+    },
+    "node-red-contrib-influxdb3": {
+        "name": "node-red-contrib-influxdb3",
+        "version": "1.1.1",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "influxdb3": {
+                "name": "influxdb3",
+                "types": [
+                    "influxdb3-config",
+                    "influxdb3-write"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-influxdb3",
+                "file": "/data/node_modules/node-red-contrib-influxdb3/influxdb3.js"
+            }
+        }
+    },
+    "node-red-contrib-influxdb3-read": {
+        "name": "node-red-contrib-influxdb3-read",
+        "version": "1.0.2",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "influxdb3-read": {
+                "name": "influxdb3-read",
+                "types": [
+                    "influxdb3-read"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-influxdb3-read",
+                "file": "/data/node_modules/node-red-contrib-influxdb3-read/influxdb3-read.js"
+            }
+        }
+    },
+    "node-red-contrib-influxdb": {
+        "name": "node-red-contrib-influxdb",
+        "version": "0.7.0",
+        "local": true,
+        "user": true,
+        "nodes": {
+            "influxdb": {
+                "name": "influxdb",
+                "types": [
+                    "influxdb",
+                    "influxdb out",
+                    "influxdb batch",
+                    "influxdb in"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-contrib-influxdb",
+                "file": "/data/node_modules/node-red-contrib-influxdb/influxdb.js"
+            }
+        }
     }
 }

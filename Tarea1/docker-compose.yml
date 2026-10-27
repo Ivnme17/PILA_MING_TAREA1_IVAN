@@ -1,3 +1,4 @@
+name: Tarea1
 services:
   mosquitto:
     image: eclipse-mosquitto
@@ -27,6 +28,38 @@ services:
     depends_on:
       - mosquitto
 
+# compose.yaml
+  db:
+    image: influxdb:2
+    ports:
+      - "${INFLUXDB_PORT:-8086}:8086"
+    env_file:
+      - .env
+    secrets:
+      - influxdb2-admin-username
+      - influxdb2-admin-password
+      - influxdb2-admin-token
+    volumes:
+      - ./influxdb2/data:/var/lib/influxdb2
+      - ./influxdb2/config:/etc/influxdb2
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME_FILE: /run/secrets/influxdb2-admin-username
+      DOCKER_INFLUXDB_INIT_PASSWORD_FILE: /run/secrets/influxdb2-admin-password
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN_FILE: /run/secrets/influxdb2-admin-token
+      DOCKER_INFLUXDB_INIT_ORG: miorg
+      DOCKER_INFLUXDB_INIT_BUCKET: mibucket
+    networks:
+      - t1-lan
+    depends_on:
+      - node-red
+secrets:
+  influxdb2-admin-username:
+    file: ./.env.influxdb2-admin-username
+  influxdb2-admin-password:
+    file: ./.env.influxdb2-admin-password
+  influxdb2-admin-token:
+    file: ./.env.influxdb2-admin-token
 networks:
   t1-lan:
     driver: bridge
