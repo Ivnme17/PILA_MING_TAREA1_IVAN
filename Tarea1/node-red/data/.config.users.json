@@ -18,7 +18,7 @@
                     "v": 4,
                     "tabs": [],
                     "primary": {
-                        "width": 576,
+                        "width": 319,
                         "top": {
                             "tabs": [
                                 "info",
@@ -27,7 +27,7 @@
                                 "context",
                                 "dashboard-2.0"
                             ],
-                            "height": 306,
+                            "height": 300,
                             "hidden": false,
                             "active": "dashboard-2.0"
                         },
@@ -40,12 +40,12 @@
                         }
                     },
                     "secondary": {
-                        "width": 210,
+                        "width": 180,
                         "top": {
                             "tabs": [
                                 "explorer"
                             ],
-                            "height": 306,
+                            "height": 300,
                             "hidden": false,
                             "active": "explorer"
                         },
@@ -62,6 +62,10 @@
             "tours": {
                 "welcome": "5.0.8"
             }
+        },
+        "debug": {
+            "filter": "filterAll",
+            "filteredNodes": []
         }
     }
 }

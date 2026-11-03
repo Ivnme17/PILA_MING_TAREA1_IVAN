@@ -31,6 +31,7 @@ services:
 # compose.yaml
   db:
     image: influxdb:2
+    container_name: influxdb_t1
     ports:
       - "${INFLUXDB_PORT:-8086}:8086"
     env_file:
@@ -47,12 +48,28 @@ services:
       DOCKER_INFLUXDB_INIT_USERNAME_FILE: /run/secrets/influxdb2-admin-username
       DOCKER_INFLUXDB_INIT_PASSWORD_FILE: /run/secrets/influxdb2-admin-password
       DOCKER_INFLUXDB_INIT_ADMIN_TOKEN_FILE: /run/secrets/influxdb2-admin-token
-      DOCKER_INFLUXDB_INIT_ORG: miorg
-      DOCKER_INFLUXDB_INIT_BUCKET: mibucket
+      DOCKER_INFLUXDB_INIT_ORG: sdb
+      DOCKER_INFLUXDB_INIT_BUCKET: tarea1
     networks:
       - t1-lan
     depends_on:
       - node-red
+  grafana:
+    image: grafana/grafana
+    container_name: grafana_t1
+    environment:
+      - .env
+      - GF_SERVER_ROOT_URL=http://my.grafana.server/
+      - GF_PLUGINS_PREINSTALL=grafana-clock-panel
+    ports:
+      - '3000:3000'
+    volumes:
+      - './grafana/data:/var/lib/grafana'  
+    networks:
+      - t1-lan
+    depends_on:
+      - db
+    
 secrets:
   influxdb2-admin-username:
     file: ./.env.influxdb2-admin-username

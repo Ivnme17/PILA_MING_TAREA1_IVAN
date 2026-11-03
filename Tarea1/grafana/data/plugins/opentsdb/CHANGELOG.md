@@ -1,0 +1,45 @@
+# Changelog
+
+## 13.0.8
+
+- Fix CVEs in transitive dependencies: update dompurify to 3.4.17, source-map-js to 1.2.2 and zod to 4.6.7
+- Fix a connection freeze between Grafana and the plugin under heavy query load by updating google.golang.org/grpc to v1.85.0 ([grpc/grpc-go#9330](https://github.com/grpc/grpc-go/issues/9330))
+
+## 13.0.7
+
+- Bump backend dependency
+
+## 13.0.6
+
+- Update Go to 1.27.3 ([#91](https://github.com/grafana/grafana-opentsdb-datasource/pull/91))
+
+## 13.0.5
+
+- Fix CVEs in transitive dependencies: update brace-expansion and override basic-ftp to v6.
+
+## 13.0.4
+
+- Classify OpenTSDB query DNS "server misbehaving" failures as downstream errors.
+
+## 13.0.3
+
+- Update frontend dependencies ([#53](https://github.com/grafana/grafana-opentsdb-datasource/pull/53))
+- Update backend dependencies ([#80](https://github.com/grafana/grafana-opentsdb-datasource/pull/80))
+
+## 13.0.2
+
+- Bump go v1.26.7 and grafana-plugin-sdk-go v0.296.4 ([#73](https://github.com/grafana/grafana-opentsdb-datasource/pull/73))
+- Bump @grafana/* to 13.1.1 and update dependencies ([#74](https://github.com/grafana/grafana-opentsdb-datasource/pull/74))
+- docs: add signed commits requirement to CONTRIBUTING.md ([#65](https://github.com/grafana/grafana-opentsdb-datasource/pull/65))
+- Security Hardening ([#48](https://github.com/grafana/grafana-opentsdb-datasource/pull/48))
+- Chore: Bump Go version to 1.26.3 ([#36](https://github.com/grafana/grafana-opentsdb-datasource/pull/36))
+- Update golangci-lint-version to 2.11.0 ([#37](https://github.com/grafana/grafana-opentsdb-datasource/pull/37))
+
+## 13.0.1 
+
+- Bump typescript v6.x
+
+
+## 13.0.0 (2026-03-27)
+
+- Initial release of the external OpenTSDB datasource plugin.

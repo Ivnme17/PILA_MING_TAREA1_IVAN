@@ -1,7 +1,7 @@
 [default]
   url = "http://localhost:8086"
   token = "dyqp7vD3lOzcbVfSIjekhsB8NJH6X2wMi5T9xPtF"
-  org = "miorg"
+  org = "sdb"
   active = true
 # 
 # [eu-central]

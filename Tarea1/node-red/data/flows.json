@@ -8,6 +8,30 @@
         "env": []
     },
     {
+        "id": "c21a542bb5f0e525",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1519417fdbd5a1d3",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f31e1480f8d41f11",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "c8f2a5d4085871ff",
         "type": "mqtt-broker",
         "name": "T1",
@@ -130,6 +154,36 @@
         "tab": ""
     },
     {
+        "id": "dabd1c5a442326ec",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "database",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "6d87e277c5f5396b",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "mibucket",
+        "name": "influxdb",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
         "id": "221cb54a1d3266e2",
         "type": "inject",
         "z": "abdd2a876d4941c6",
@@ -202,8 +256,8 @@
         "id": "2a57d929164dcb05",
         "type": "mqtt in",
         "z": "abdd2a876d4941c6",
-        "name": "",
-        "topic": "temperatura",
+        "name": "temperatura",
+        "topic": "sdb/aula211/temp",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "c8f2a5d4085871ff",
@@ -215,7 +269,8 @@
         "y": 260,
         "wires": [
             [
-                "7c98fd4215cfc839"
+                "7c98fd4215cfc839",
+                "690b1f3e15bbba8f"
             ]
         ]
     },
@@ -235,7 +290,8 @@
         "y": 260,
         "wires": [
             [
-                "3481f1c91b07df22"
+                "3481f1c91b07df22",
+                "f62260acc52efabf"
             ]
         ]
     },
@@ -265,11 +321,429 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 860,
         "y": 260,
         "wires": []
+    },
+    {
+        "id": "690b1f3e15bbba8f",
+        "type": "function",
+        "z": "abdd2a876d4941c6",
+        "name": "function 4",
+        "func": "let contador = context.get(\"contador\") || 0;\ncontador = contador +1;\n\nlet lista = context.get(\"historico\") || [];\nlista.push({\n    orden: contador,\n    valor: msg.payload,\n    hora: new Date().toLocaleTimeString()\n});\n\ncontext.set(\"contador\", contador);\ncontext.set(\"historico\", lista);\n\n\nmsg.payload = {\n    mensajeActual: msg.payload,\n    ejecuciones: contador,\n    ultimos: lista.slice(-3)\n};\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n// flow -> variable global\n// contexto -> variable publica\nflow.set(\"contador\",0);\ncontext.set(\"historico\",[])",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 400,
+        "wires": [
+            [
+                "dd86686f42629457"
+            ]
+        ]
+    },
+    {
+        "id": "dd86686f42629457",
+        "type": "debug",
+        "z": "abdd2a876d4941c6",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "bbdc3a8b10c8a78a",
+        "type": "catch",
+        "z": "abdd2a876d4941c6",
+        "name": "Excepciones",
+        "scope": [],
+        "uncaught": false,
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "6744668fadc62907"
+            ]
+        ]
+    },
+    {
+        "id": "6744668fadc62907",
+        "type": "debug",
+        "z": "abdd2a876d4941c6",
+        "name": "Errores",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "f62260acc52efabf",
+        "type": "influxdb out",
+        "z": "abdd2a876d4941c6",
+        "influxdb": "6d87e277c5f5396b",
+        "name": "Salida de datos",
+        "measurement": "temperatura",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "mibucket",
+        "x": 880,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "e0d84026e8846597",
+        "type": "complete",
+        "z": "abdd2a876d4941c6",
+        "name": "",
+        "scope": [
+            "f62260acc52efabf"
+        ],
+        "uncaught": false,
+        "x": 130,
+        "y": 520,
+        "wires": [
+            [
+                "93417afdbd681536"
+            ]
+        ]
+    },
+    {
+        "id": "93417afdbd681536",
+        "type": "debug",
+        "z": "abdd2a876d4941c6",
+        "name": "Exito",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "81c3acbc72e35747",
+        "type": "inject",
+        "z": "c21a542bb5f0e525",
+        "name": "nombre",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "  Juan Perez  ",
+        "payloadType": "str",
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "c632d12d796387e9",
+                "6784dfd4c0c98bd9"
+            ]
+        ]
+    },
+    {
+        "id": "c632d12d796387e9",
+        "type": "function",
+        "z": "c21a542bb5f0e525",
+        "name": "limpiar cadena",
+        "func": "let nombreLimpio = msg.payload.trim();\n\nlet partes = nombreLimpio.split(/\\s+/);\nnode.warn(\"nombreLimpio: \" + nombreLimpio);\nfunction sinTildes(texto) {\n    return texto.normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\");\n}\n\n// cogemos la inicial de la lista de cadenas\nlet inicial = partes[0].charAt(0);\n// Aqui obtenemos el apellido\nlet primerApellido = partes[1];\n//juntamos las dos para obtener el nombre con apellido y todo en minuscula\nlet username = sinTildes(inicial + primerApellido).toLowerCase();\n\n// Montar objeto JSON\nmsg.payload = {\n    nombreLimpio: nombreLimpio,\n    username: username,\n    partes: partes,\n    numPalabras: partes.length,\n    activo: true\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 360,
+        "wires": [
+            [
+                "96a3f4adef5d2b3b"
+            ]
+        ]
+    },
+    {
+        "id": "6784dfd4c0c98bd9",
+        "type": "debug",
+        "z": "c21a542bb5f0e525",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "96a3f4adef5d2b3b",
+        "type": "debug",
+        "z": "c21a542bb5f0e525",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "ca917282c34024e1",
+        "type": "inject",
+        "z": "1519417fdbd5a1d3",
+        "name": "producto1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"producto\": \"Teclado Mecánico\", \"precio\": 45.5, \"unidades\": 2, \"iva\": 21}",
+        "payloadType": "json",
+        "x": 240,
+        "y": 160,
+        "wires": [
+            [
+                "af8860559500e81d",
+                "e28b6a0a07e0fb4b"
+            ]
+        ]
+    },
+    {
+        "id": "715cbf55892d51b7",
+        "type": "inject",
+        "z": "1519417fdbd5a1d3",
+        "name": "producto2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"producto\": \"Ordenador portatil\", \"precio\": 40.5, \"unidades\": 3, \"iva\": 21}",
+        "payloadType": "json",
+        "x": 220,
+        "y": 240,
+        "wires": [
+            [
+                "af8860559500e81d",
+                "e28b6a0a07e0fb4b"
+            ]
+        ]
+    },
+    {
+        "id": "3a3a171b9ff7f18d",
+        "type": "inject",
+        "z": "1519417fdbd5a1d3",
+        "name": "producto3",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"producto\": \"Monitor AOC\", \"precio\": 219, \"unidades\":10, \"iva\": 21}",
+        "payloadType": "json",
+        "x": 240,
+        "y": 340,
+        "wires": [
+            [
+                "af8860559500e81d",
+                "e28b6a0a07e0fb4b"
+            ]
+        ]
+    },
+    {
+        "id": "de9f6d1280fca0ba",
+        "type": "inject",
+        "z": "1519417fdbd5a1d3",
+        "name": "producto4",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"producto\": \"Escritorio elevable\", \"precio\": 110, \"unidades\": 0, \"iva\": 21}",
+        "payloadType": "json",
+        "x": 260,
+        "y": 480,
+        "wires": [
+            [
+                "af8860559500e81d",
+                "e28b6a0a07e0fb4b"
+            ]
+        ]
+    },
+    {
+        "id": "e28b6a0a07e0fb4b",
+        "type": "function",
+        "z": "1519417fdbd5a1d3",
+        "name": "function 5",
+        "func": "let producto = msg.payload\nlet subtotal = 0\nlet importeIVA = 0\nlet total = 0\nif (producto[\"unidades\"] > 0){\n    // subtotal es cantidad por precio\n    subtotal = producto[\"unidades\"] * producto[\"precio\"]\n    importeIVA = producto[\"precio\"] * (producto[\"iva\"]/100)\n    // suma de subtotal e importe con IVA\n    total = subtotal + importeIVA\n\n}else{\n    return; // salir silenciosamente \n}\n// Montar objeto JSON\nmsg.payload = {\n    subtotal: subtotal.toFixed(2),\n    importeIVA: importeIVA.toFixed(2),\n    total: total.toFixed(2),\n};\nmsg.topic = \"factura emitida\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 240,
+        "wires": [
+            [
+                "dcd734b926cf3078"
+            ]
+        ]
+    },
+    {
+        "id": "dcd734b926cf3078",
+        "type": "debug",
+        "z": "1519417fdbd5a1d3",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "af8860559500e81d",
+        "type": "debug",
+        "z": "1519417fdbd5a1d3",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "4504d7204aa78d21",
+        "type": "function",
+        "z": "f31e1480f8d41f11",
+        "name": "function 6",
+        "func": "if (msg.topic === \"reset\") {\n    context.set(\"min\", null);\n    context.set(\"max\", null);\n    context.set(\"suma\", 0);\n    context.set(\"contador\", 0);\n\n    node.status({ fill: \"yellow\", shape: \"ring\", text: \"Estadísticas reiniciadas\" });\n    msg.payload = \"Estadísticas reiniciadas a cero\";\n    return msg;\n}\n\nconst valor = Number(msg.payload);\nif (msg.payload === \"\" || msg.payload === null || isNaN(valor)) {\n    node.warn(\"Payload no numérico ignorado: \" + msg.payload);\n    node.status({ fill: \"red\", shape: \"ring\", text: \"Valor no válido\" });\n    return null;\n}\n\nlet min = context.get(\"min\");\nlet max = context.get(\"max\");\nlet suma = context.get(\"suma\") || 0;\nlet contador = context.get(\"contador\") || 0;\n\nif (min === null || valor < min) min = valor;\nif (max === null || valor > max) max = valor;\nsuma += valor;\ncontador++;\n\ncontext.set(\"min\", min);\ncontext.set(\"max\", max);\ncontext.set(\"suma\", suma);\ncontext.set(\"contador\", contador);\n\nconst media = suma / contador;\nnode.status({\n    fill: \"green\",\n    shape: \"dot\",\n    text: \"Media: \" + media.toFixed(2) + \" | Lecturas: \" + contador\n});\n\nmsg.payload = {\n    valor: valor,\n    min: min,\n    max: max,\n    media: Number(media.toFixed(2)),\n    contador: contador\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set(\"min\", null);\ncontext.set(\"max\", null);\ncontext.set(\"suma\", 0);\ncontext.set(\"contador\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "38f26d5c39d235be"
+            ]
+        ]
+    },
+    {
+        "id": "38f26d5c39d235be",
+        "type": "debug",
+        "z": "f31e1480f8d41f11",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "7881bfde7f7a6d48",
+        "type": "inject",
+        "z": "f31e1480f8d41f11",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "num",
+        "x": 270,
+        "y": 280,
+        "wires": [
+            [
+                "4504d7204aa78d21"
+            ]
+        ]
     }
 ]
