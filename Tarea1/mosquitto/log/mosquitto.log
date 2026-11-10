@@ -1193,3 +1193,118 @@ To fix this, use `chmod 0700 /mosquitto/config/passwd`.
 2026-11-03T20:36:41: Client nodered155e70fbc105230f [172.18.0.3:35788] disconnected.
 2026-11-03T20:36:41: New connection from 172.18.0.3:48640 on port 1883.
 2026-11-03T20:36:41: New client connected from 172.18.0.3:48640 as noderedd2154ffa3e733368 (p4, c1, k60, u'admin').
+2026-11-03T20:41:21: Client noderedd2154ffa3e733368 [172.18.0.3:48640] disconnected.
+2026-11-03T20:41:21: New connection from 172.18.0.3:34106 on port 1883.
+2026-11-03T20:41:21: New client connected from 172.18.0.3:34106 as nodered9b9dcd031b01ec5c (p4, c1, k60, u'admin').
+2026-11-03T20:41:28: Saving in-memory database to /mosquitto/data//mosquitto.db.
+2026-11-03T20:49:50: Client nodered9b9dcd031b01ec5c [172.18.0.3:34106] disconnected.
+2026-11-03T20:49:50: New connection from 172.18.0.3:34108 on port 1883.
+2026-11-03T20:49:50: New client connected from 172.18.0.3:34108 as nodered058f62ae3c54e0fa (p4, c1, k60, u'admin').
+2026-11-03T20:50:15: Client nodered058f62ae3c54e0fa [172.18.0.3:34108] disconnected.
+2026-11-03T20:50:15: New connection from 172.18.0.3:33622 on port 1883.
+2026-11-03T20:50:15: New client connected from 172.18.0.3:33622 as noderedd08b24f4bbc37c46 (p4, c1, k60, u'admin').
+2026-11-03T20:55:08: Client noderedd08b24f4bbc37c46 [172.18.0.3:33622] disconnected.
+2026-11-03T20:55:08: New connection from 172.18.0.3:34492 on port 1883.
+2026-11-03T20:55:08: New client connected from 172.18.0.3:34492 as noderedbc37a853b0125ffc (p4, c1, k60, u'admin').
+2026-11-03T20:57:21: Client noderedbc37a853b0125ffc [172.18.0.3:34492] disconnected.
+2026-11-03T20:57:21: New connection from 172.18.0.3:35154 on port 1883.
+2026-11-03T20:57:21: New client connected from 172.18.0.3:35154 as nodered69897164a3772d5a (p4, c1, k60, u'admin').
+2026-11-03T20:58:12: Client mqtt-explorer-273f48b2 [172.18.0.1:39944] disconnected.
+2026-11-03T20:59:58: Client nodered69897164a3772d5a [172.18.0.3:35154] disconnected.
+2026-11-03T20:59:58: New connection from 172.18.0.3:56300 on port 1883.
+2026-11-03T20:59:58: New client connected from 172.18.0.3:56300 as nodered3e8dc7d2dc76a392 (p4, c1, k60, u'admin').
+2026-11-03T21:01:34: Client nodered3e8dc7d2dc76a392 [172.18.0.3:56300] disconnected.
+2026-11-03T21:01:35: mosquitto version 2.1.2 terminating
+2026-11-03T21:01:35: Saving in-memory database to /mosquitto/data//mosquitto.db.
+2026-11-10T16:00:40: mosquitto version 2.1.2 starting
+2026-11-10T16:00:40: Config loaded from /mosquitto/config/mosquitto.conf.
+2026-11-10T16:00:40: Bridge support available.
+2026-11-10T16:00:40: Persistence support available.
+2026-11-10T16:00:40: TLS support available.
+2026-11-10T16:00:40: TLS-PSK support available.
+2026-11-10T16:00:40: Websockets support available.
+2026-11-10T16:00:40: Warning: File /mosquitto/config/passwd has world readable permissions. Future versions will refuse to load this file.
+To fix this, use `chmod 0700 /mosquitto/config/passwd`.
+
+2026-11-10T16:00:40: Warning: File /mosquitto/config/passwd owner is not mosquitto. Future versions will refuse to load this file.To fix this, use `chown mosquitto /mosquitto/config/passwd`.
+
+2026-11-10T16:00:40: Warning: File /mosquitto/config/passwd group is not mosquitto. Future versions will refuse to load this file.
+
+2026-11-10T16:00:40: Plugin builtin-security has registered to receive 'basic-auth' events.
+2026-11-10T16:00:40: Opening ipv4 listen socket on port 1883.
+2026-11-10T16:00:40: Opening ipv6 listen socket on port 1883.
+2026-11-10T16:00:40: mosquitto version 2.1.2 running
+2026-11-10T16:00:55: New connection from 172.18.0.3:47384 on port 1883.
+2026-11-10T16:00:55: New client connected from 172.18.0.3:47384 as noderedc1e7436aa771d675 (p4, c1, k60, u'admin').
+2026-11-10T16:01:09: New connection from 172.18.0.1:50900 on port 1883.
+2026-11-10T16:01:09: Protocol error from 172.18.0.1:50900: First packet not CONNECT (47).
+2026-11-10T16:01:09: Client 172.18.0.1 [172.18.0.1:50900] disconnected: protocol error.
+2026-11-10T16:01:09: New connection from 172.18.0.1:50910 on port 1883.
+2026-11-10T16:01:09: Protocol error from 172.18.0.1:50910: First packet not CONNECT (47).
+2026-11-10T16:01:09: Client 172.18.0.1 [172.18.0.1:50910] disconnected: protocol error.
+2026-11-10T16:06:51: New connection from 172.18.0.1:57664 on port 1883.
+2026-11-10T16:06:51: Protocol error from 172.18.0.1:57664: First packet not CONNECT (47).
+2026-11-10T16:06:51: Client 172.18.0.1 [172.18.0.1:57664] disconnected: protocol error.
+2026-11-10T16:06:51: New connection from 172.18.0.1:57674 on port 1883.
+2026-11-10T16:06:51: Protocol error from 172.18.0.1:57674: First packet not CONNECT (47).
+2026-11-10T16:06:51: Client 172.18.0.1 [172.18.0.1:57674] disconnected: protocol error.
+2026-11-10T16:06:51: New connection from 172.18.0.1:57686 on port 1883.
+2026-11-10T16:06:55: Protocol error from 172.18.0.1:57686: First packet not CONNECT (47).
+2026-11-10T16:06:55: Client 172.18.0.1 [172.18.0.1:57686] disconnected: protocol error.
+2026-11-10T16:06:55: New connection from 172.18.0.1:57692 on port 1883.
+2026-11-10T16:06:55: Protocol error from 172.18.0.1:57692: First packet not CONNECT (47).
+2026-11-10T16:06:55: Client 172.18.0.1 [172.18.0.1:57692] disconnected: protocol error.
+2026-11-10T16:06:55: New connection from 172.18.0.1:57694 on port 1883.
+2026-11-10T16:06:55: Protocol error from 172.18.0.1:57694: First packet not CONNECT (47).
+2026-11-10T16:06:55: Client 172.18.0.1 [172.18.0.1:57694] disconnected: protocol error.
+2026-11-10T16:18:48: Client noderedc1e7436aa771d675 [172.18.0.3:47384] disconnected.
+2026-11-10T16:18:48: New connection from 172.18.0.3:54338 on port 1883.
+2026-11-10T16:18:48: New client connected from 172.18.0.3:54338 as nodered2f57d715396c7431 (p4, c1, k60, u'admin').
+2026-11-10T16:21:03: Client nodered2f57d715396c7431 [172.18.0.3:54338] disconnected.
+2026-11-10T16:21:03: mosquitto version 2.1.2 terminating
+2026-11-10T16:21:03: Saving in-memory database to /mosquitto/data//mosquitto.db.
+2026-11-10T16:21:36: mosquitto version 2.1.2 starting
+2026-11-10T16:21:36: Config loaded from /mosquitto/config/mosquitto.conf.
+2026-11-10T16:21:36: Bridge support available.
+2026-11-10T16:21:36: Persistence support available.
+2026-11-10T16:21:36: TLS support available.
+2026-11-10T16:21:36: TLS-PSK support available.
+2026-11-10T16:21:36: Websockets support available.
+2026-11-10T16:21:36: Warning: File /mosquitto/config/passwd has world readable permissions. Future versions will refuse to load this file.
+To fix this, use `chmod 0700 /mosquitto/config/passwd`.
+
+2026-11-10T16:21:36: Warning: File /mosquitto/config/passwd owner is not mosquitto. Future versions will refuse to load this file.To fix this, use `chown mosquitto /mosquitto/config/passwd`.
+
+2026-11-10T16:21:36: Warning: File /mosquitto/config/passwd group is not mosquitto. Future versions will refuse to load this file.
+
+2026-11-10T16:21:36: Plugin builtin-security has registered to receive 'basic-auth' events.
+2026-11-10T16:21:36: Opening ipv4 listen socket on port 1883.
+2026-11-10T16:21:36: Opening ipv6 listen socket on port 1883.
+2026-11-10T16:21:36: mosquitto version 2.1.2 running
+2026-11-10T16:21:45: New connection from 172.18.0.3:42518 on port 1883.
+2026-11-10T16:21:45: New client connected from 172.18.0.3:42518 as nodered74df212832e56075 (p4, c1, k60, u'admin').
+2026-11-10T16:22:22: Client nodered74df212832e56075 [172.18.0.3:42518] disconnected.
+2026-11-10T16:22:22: mosquitto version 2.1.2 terminating
+2026-11-10T16:22:22: Saving in-memory database to /mosquitto/data//mosquitto.db.
+2026-11-10T18:19:11: mosquitto version 2.1.2 starting
+2026-11-10T18:19:11: Config loaded from /mosquitto/config/mosquitto.conf.
+2026-11-10T18:19:11: Bridge support available.
+2026-11-10T18:19:11: Persistence support available.
+2026-11-10T18:19:11: TLS support available.
+2026-11-10T18:19:11: TLS-PSK support available.
+2026-11-10T18:19:11: Websockets support available.
+2026-11-10T18:19:11: Warning: File /mosquitto/config/passwd has world readable permissions. Future versions will refuse to load this file.
+To fix this, use `chmod 0700 /mosquitto/config/passwd`.
+
+2026-11-10T18:19:11: Warning: File /mosquitto/config/passwd owner is not mosquitto. Future versions will refuse to load this file.To fix this, use `chown mosquitto /mosquitto/config/passwd`.
+
+2026-11-10T18:19:11: Warning: File /mosquitto/config/passwd group is not mosquitto. Future versions will refuse to load this file.
+
+2026-11-10T18:19:11: Plugin builtin-security has registered to receive 'basic-auth' events.
+2026-11-10T18:19:11: Opening ipv4 listen socket on port 1883.
+2026-11-10T18:19:11: Opening ipv6 listen socket on port 1883.
+2026-11-10T18:19:11: mosquitto version 2.1.2 running
+2026-11-10T18:19:23: New connection from 172.18.0.3:59918 on port 1883.
+2026-11-10T18:19:23: New client connected from 172.18.0.3:59918 as nodered9495105797d59254 (p4, c1, k60, u'admin').
+2026-11-10T18:49:12: Saving in-memory database to /mosquitto/data//mosquitto.db.
+2026-11-10T19:19:12: Saving in-memory database to /mosquitto/data//mosquitto.db.

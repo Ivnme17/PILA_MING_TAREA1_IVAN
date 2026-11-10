@@ -61,6 +61,12 @@
             },
             "tours": {
                 "welcome": "5.0.8"
+            },
+            "dialog": {
+                "export": {
+                    "pretty": true,
+                    "json-view": true
+                }
             }
         },
         "debug": {

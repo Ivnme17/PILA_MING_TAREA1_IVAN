@@ -32,6 +32,30 @@
         "env": []
     },
     {
+        "id": "75f80b78b395aca7",
+        "type": "tab",
+        "label": "Flow 5",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "586c162d642e7bbd",
+        "type": "tab",
+        "label": "Flow 6",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d87740e33f59232a",
+        "type": "tab",
+        "label": "Flow 7",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "c8f2a5d4085871ff",
         "type": "mqtt-broker",
         "name": "T1",
@@ -637,7 +661,7 @@
         "type": "function",
         "z": "1519417fdbd5a1d3",
         "name": "function 5",
-        "func": "let producto = msg.payload\nlet subtotal = 0\nlet importeIVA = 0\nlet total = 0\nif (producto[\"unidades\"] > 0){\n    // subtotal es cantidad por precio\n    subtotal = producto[\"unidades\"] * producto[\"precio\"]\n    importeIVA = producto[\"precio\"] * (producto[\"iva\"]/100)\n    // suma de subtotal e importe con IVA\n    total = subtotal + importeIVA\n\n}else{\n    return; // salir silenciosamente \n}\n// Montar objeto JSON\nmsg.payload = {\n    subtotal: subtotal,\n    importeIVA: importeIVA,\n    total: total,\n};\nmsg.topic = \"factura emitida\"\nreturn msg;",
+        "func": "let producto = msg.payload\nlet subtotal = 0\nlet importeIVA = 0\nlet total = 0\nif (producto[\"unidades\"] > 0){\n    // subtotal es cantidad por precio\n    subtotal = producto[\"unidades\"] * producto[\"precio\"]\n    importeIVA = producto[\"precio\"] * (producto[\"iva\"]/100)\n    // suma de subtotal e importe con IVA\n    total = subtotal + importeIVA\n\n}else{\n    return; // salir silenciosamente \n}\n// Montar objeto JSON\nmsg.payload = {\n    subtotal: subtotal.toFixed(2),\n    importeIVA: importeIVA.toFixed(2),\n    total: total.toFixed(2),\n};\nmsg.topic = \"factura emitida\"\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -745,5 +769,303 @@
                 "4504d7204aa78d21"
             ]
         ]
+    },
+    {
+        "id": "e28a502c13372b9f",
+        "type": "function",
+        "z": "75f80b78b395aca7",
+        "name": "function 7",
+        "func": "const valor = msg.payload\nif(isNaN(valor)){\n    node.warn(\"El umbral debe ser un número. Recibido: \" + msg.payload);\n    return null;\n}\nflow.set(\"umbral_alerta\", valor)\nmsg.payload = \"Umbral configurado a \" + valor + \" °C\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "dee7debc2e38587e"
+            ]
+        ]
+    },
+    {
+        "id": "199ae681025e7c8d",
+        "type": "function",
+        "z": "75f80b78b395aca7",
+        "name": "function 8",
+        "func": "let temperatura = Number(msg.payload)\nif(isNaN(temperatura)){\n    node.warn(\"La temperatura debe ser un número. Recibido: \" + msg.payload);\n    return null;\n}\n\nconst umbral = flow.get(\"umbral_alerta\") || 30;\n// En el caso de que la entrada numerica sea 0\n//if (umbral === undefined) umbral = 30;\nif (temperatura > umbral) {\n    msg.payload = \"ALERTA: \" + temperatura + \" °C supera el umbral de \" + umbral + \" °C\";\n} else {\n    msg.payload = \"OK: \" + temperatura + \" °C no supera el umbral de \" + umbral + \" °C\";\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 220,
+        "wires": [
+            [
+                "7d59a4987762158f"
+            ]
+        ]
+    },
+    {
+        "id": "2122a096086d9b50",
+        "type": "inject",
+        "z": "75f80b78b395aca7",
+        "name": "entrada numerica",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "23",
+        "payloadType": "num",
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "e28a502c13372b9f"
+            ]
+        ]
+    },
+    {
+        "id": "65ceef5a947554b9",
+        "type": "inject",
+        "z": "75f80b78b395aca7",
+        "name": "temperatura",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "25.0",
+        "payloadType": "num",
+        "x": 690,
+        "y": 220,
+        "wires": [
+            [
+                "199ae681025e7c8d"
+            ]
+        ]
+    },
+    {
+        "id": "dee7debc2e38587e",
+        "type": "debug",
+        "z": "75f80b78b395aca7",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7d59a4987762158f",
+        "type": "debug",
+        "z": "75f80b78b395aca7",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "fba3eaaddcbd475d",
+        "type": "inject",
+        "z": "586c162d642e7bbd",
+        "name": "pedidos",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"idPedido\": 107, \"pais\": \"ES\", \"importe\": 600, \"vip\": false}",
+        "payloadType": "json",
+        "x": 310,
+        "y": 280,
+        "wires": [
+            [
+                "e1ca70460c7c3ea5"
+            ]
+        ]
+    },
+    {
+        "id": "bb3502dad60fe84d",
+        "type": "debug",
+        "z": "586c162d642e7bbd",
+        "name": "Salida1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "dfffc9c3cdf44e2a",
+        "type": "debug",
+        "z": "586c162d642e7bbd",
+        "name": "Salida2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "90ae1721f6c4fefa",
+        "type": "debug",
+        "z": "586c162d642e7bbd",
+        "name": "Salida3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "e1ca70460c7c3ea5",
+        "type": "function",
+        "z": "586c162d642e7bbd",
+        "name": "function 9",
+        "func": "const pedido = msg.payload;\n\n// Validación básica\nif (typeof pedido !== \"object\" || pedido === null) {\n    node.warn(\"Se esperaba un objeto JSON. Recibido: \" + JSON.stringify(pedido));\n    return null;\n}\n\nconst importe = Number(pedido.importe);\nif (isNaN(importe)) {\n    node.warn(\"El importe no es numérico en el pedido \" + pedido.idPedido);\n    return null;\n}\n\nconst salida1 = [];  // Express (+ avisos a financiero)\nconst salida2 = [];  // Estándar\nconst salida3 = [];  // Internacional\n\n// Reglas 1-3: enrutado principal\nif (pedido.pais !== \"ES\") {\n    salida3.push(msg);\n} else if (pedido.vip === true || importe >= 100) {\n    salida1.push(msg);\n} else {\n    salida2.push(msg);\n}\n\n// Regla 4 (extra): copia de aviso a financiero por la Salida 1\nif (importe > 500) {\n    const aviso = RED.util.cloneMessage(msg);\n    aviso.topic = \"aviso_financiero\";\n    aviso.payload = {\n        aviso: \"Pedido de importe elevado (> 500 €)\",\n        idPedido: pedido.idPedido,\n        importe: importe,\n        pais: pedido.pais\n    };\n    salida1.push(aviso);\n}\n\nreturn [salida1, salida2, salida3];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 280,
+        "wires": [
+            [
+                "bb3502dad60fe84d",
+                "dfffc9c3cdf44e2a",
+                "90ae1721f6c4fefa"
+            ]
+        ]
+    },
+    {
+        "id": "4b121b2158734a7a",
+        "type": "inject",
+        "z": "d87740e33f59232a",
+        "name": "entrada",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[{\"id\": \"S1\", \"val\": 22}, {\"id\": \"S2\", \"val\": -999}, {\"id\": \"S3\", \"val\": 25}, {\"id\": \"S4\", \"val\": 19}]",
+        "payloadType": "json",
+        "x": 290,
+        "y": 240,
+        "wires": [
+            [
+                "5346d78533eb966c",
+                "3179cd25c4e96fa2"
+            ]
+        ]
+    },
+    {
+        "id": "3179cd25c4e96fa2",
+        "type": "function",
+        "z": "d87740e33f59232a",
+        "name": "function 10",
+        "func": "const lote = msg.payload;\n\nif (!Array.isArray(lote)) {\n    node.warn(\"Se esperaba un array de sensores. Recibido: \" + JSON.stringify(lote));\n    return null;\n}\n\nconst mensajes = [];\n\nfor (const sensor of lote) {\n    if (sensor.val === -999) {\n        // Fallo de lectura: aviso amarillo y sin mensaje\n        node.warn(\"Fallo de lectura en el sensor \" + sensor.id);\n        continue;\n    }\n\n    // Sensor válido: un mensaje independiente\n    const nuevo = RED.util.cloneMessage(msg);\n    nuevo.payload = sensor;\n    nuevo.topic = sensor.id;\n    mensajes.push(nuevo);\n}\n\nreturn [mensajes];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 240,
+        "wires": [
+            [
+                "9395713d6206b7b5"
+            ]
+        ]
+    },
+    {
+        "id": "9395713d6206b7b5",
+        "type": "debug",
+        "z": "d87740e33f59232a",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "5346d78533eb966c",
+        "type": "debug",
+        "z": "d87740e33f59232a",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 400,
+        "wires": []
     }
 ]

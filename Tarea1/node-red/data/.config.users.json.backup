@@ -61,10 +61,15 @@
             },
             "tours": {
                 "welcome": "5.0.8"
+            },
+            "dialog": {
+                "export": {
+                    "pretty": true
+                }
             }
         },
         "debug": {
-            "filter": "filterSelected",
+            "filter": "filterAll",
             "filteredNodes": []
         }
     }
