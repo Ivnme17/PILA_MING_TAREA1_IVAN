@@ -4,7 +4,11 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
+<<<<<<< HEAD
         "@flowfuse/node-red-dashboard": "~1.36.1",
+=======
+        "@flowfuse/node-red-dashboard": "~1.33.0",
+>>>>>>> 5c443e715b4e28fdecd420144fd991c6bd5fe12f
         "node-red-contrib-influxdb": "~0.7.0",
         "node-red-contrib-influxdb3": "~1.1.1",
         "node-red-contrib-influxdb3-read": "~1.0.2"

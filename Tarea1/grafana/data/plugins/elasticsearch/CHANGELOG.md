@@ -1,5 +1,6 @@
 # Changelog
 
+<<<<<<< HEAD
 ## [12.9.6](https://github.com/grafana/grafana-elasticsearch-datasource/compare/v12.9.5...v12.9.6) (2026-11-10)
 
 
@@ -8,6 +9,8 @@
 * **elasticsearch:** cap the number of indices a dynamic index pattern can expand to
 * **elasticsearch:** validate resource proxy path and method
 
+=======
+>>>>>>> 5c443e715b4e28fdecd420144fd991c6bd5fe12f
 ## [12.9.5](https://github.com/grafana/grafana-elasticsearch-datasource/compare/v12.9.4...v12.9.5) (2026-10-30)
 
 

@@ -1310,6 +1310,7 @@ To fix this, use `chmod 0700 /mosquitto/config/passwd`.
 2026-11-10T19:19:12: Saving in-memory database to /mosquitto/data//mosquitto.db.
 2026-11-10T19:49:14: Saving in-memory database to /mosquitto/data//mosquitto.db.
 2026-11-10T20:19:15: Saving in-memory database to /mosquitto/data//mosquitto.db.
+<<<<<<< HEAD
 2026-11-11T08:11:48: mosquitto version 2.1.2 starting
 2026-11-11T08:11:48: Config loaded from /mosquitto/config/mosquitto.conf.
 2026-11-11T08:11:48: Bridge support available.
@@ -1587,3 +1588,5 @@ To fix this, use `chmod 0700 /mosquitto/data//mosquitto.db.new`.
 
 2026-11-11T08:45:13: Warning: File /mosquitto/data//mosquitto.db.new group is not mosquitto. Future versions will refuse to load this file.
 
+=======
+>>>>>>> 5c443e715b4e28fdecd420144fd991c6bd5fe12f
