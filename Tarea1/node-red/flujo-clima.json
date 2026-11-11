@@ -1,0 +1,209 @@
+[
+  {
+    "id": "clima_tab",
+    "type": "tab",
+    "label": "Clima Almería",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "clima_influx_cfg",
+    "type": "influxdb",
+    "hostname": "db",
+    "port": 8086,
+    "protocol": "http",
+    "database": "database",
+    "name": "influxdb clima",
+    "usetls": false,
+    "tls": "",
+    "influxdbVersion": "2.0",
+    "url": "http://db:8086",
+    "timeout": 10,
+    "rejectUnauthorized": true
+  },
+  {
+    "id": "clima_http_in",
+    "type": "http in",
+    "z": "clima_tab",
+    "name": "POST /clima (script)",
+    "url": "/clima",
+    "method": "post",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 150,
+    "y": 80,
+    "wires": [
+      [
+        "clima_mqtt_out",
+        "clima_http_res"
+      ]
+    ]
+  },
+  {
+    "id": "clima_mqtt_out",
+    "type": "mqtt out",
+    "z": "clima_tab",
+    "name": "publicar sdb/almeria/clima",
+    "topic": "sdb/almeria/clima",
+    "qos": "1",
+    "retain": "false",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "c8f2a5d4085871ff",
+    "x": 440,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "clima_http_res",
+    "type": "http response",
+    "z": "clima_tab",
+    "name": "200 OK",
+    "statusCode": "200",
+    "headers": {},
+    "x": 410,
+    "y": 110,
+    "wires": []
+  },
+  {
+    "id": "clima_mqtt_in",
+    "type": "mqtt in",
+    "z": "clima_tab",
+    "name": "clima Almería",
+    "topic": "sdb/almeria/clima",
+    "qos": "1",
+    "datatype": "json",
+    "broker": "c8f2a5d4085871ff",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 130,
+    "y": 220,
+    "wires": [
+      [
+        "clima_fn"
+      ]
+    ]
+  },
+  {
+    "id": "clima_fn",
+    "type": "function",
+    "z": "clima_tab",
+    "name": "3 puntos almeria_clima",
+    "func": "const d = msg.payload;\n\n// Los tres valores que llegan del script\nconst medidas = [\n    { symbol: \"Tª\", valor: d.temperatura },\n    { symbol: \"H\",  valor: d.humedad },\n    { symbol: \"P\",  valor: d.presion }\n];\n\n// Si falta algún dato o no es un número: se avisa en el log y se descarta\nfor (const m of medidas) {\n    if (typeof m.valor !== \"number\" || isNaN(m.valor)) {\n        node.warn(\"Dato no válido para \" + m.symbol + \": \" + JSON.stringify(d));\n        node.status({ fill: \"red\", shape: \"ring\", text: \"dato inválido \" + m.symbol });\n        return null;\n    }\n}\n\n// Un punto de InfluxDB por cada symbol\nmsg.payload = medidas.map(m => ({\n    measurement: \"almeria_clima\",\n    tags: { symbol: m.symbol, source: \"open-meteo\" },\n    fields: { valor: m.valor, ts_api: d.ts_api }\n}));\nnode.status({ fill: \"green\", shape: \"dot\", text: d.temperatura + \" °C\" });\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 220,
+    "wires": [
+      [
+        "clima_dbg",
+        "clima_out"
+      ]
+    ]
+  },
+  {
+    "id": "clima_dbg",
+    "type": "debug",
+    "z": "clima_tab",
+    "name": "clima debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 670,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "clima_out",
+    "type": "influxdb out",
+    "z": "clima_tab",
+    "influxdb": "clima_influx_cfg",
+    "name": "Salida de datos clima",
+    "measurement": "almeria_clima",
+    "precision": "",
+    "retentionPolicy": "",
+    "database": "database",
+    "precisionV18FluxV20": "ms",
+    "retentionPolicyV18Flux": "",
+    "org": "sdb",
+    "bucket": "tarea1",
+    "x": 680,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "clima_complete",
+    "type": "complete",
+    "z": "clima_tab",
+    "name": "",
+    "scope": [
+      "clima_out"
+    ],
+    "uncaught": false,
+    "x": 130,
+    "y": 380,
+    "wires": [
+      [
+        "clima_exito"
+      ]
+    ]
+  },
+  {
+    "id": "clima_exito",
+    "type": "debug",
+    "z": "clima_tab",
+    "name": "Exito clima",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 420,
+    "y": 380,
+    "wires": []
+  },
+  {
+    "id": "clima_catch",
+    "type": "catch",
+    "z": "clima_tab",
+    "name": "Excepciones clima",
+    "scope": null,
+    "uncaught": false,
+    "x": 150,
+    "y": 460,
+    "wires": [
+      [
+        "clima_errores"
+      ]
+    ]
+  },
+  {
+    "id": "clima_errores",
+    "type": "debug",
+    "z": "clima_tab",
+    "name": "Errores clima",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 430,
+    "y": 460,
+    "wires": []
+  }
+]

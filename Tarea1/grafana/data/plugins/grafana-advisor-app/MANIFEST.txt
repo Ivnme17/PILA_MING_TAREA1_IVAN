@@ -1,0 +1,46 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+{
+  "manifestVersion": "2.0.0",
+  "signatureType": "grafana",
+  "signedByOrg": "grafana",
+  "signedByOrgName": "Grafana Labs",
+  "plugin": "grafana-advisor-app",
+  "version": "1.1.2",
+  "time": 1793892467674,
+  "keyId": "7e4d0c6a708866e7",
+  "files": {
+    "184.js": "b5ec47ecb044437a3500b335445fe11624c807f7cfe86b435b92df33d43df13a",
+    "README.md": "37773c6e7a931779fda9959d233ccb0c38cf8c9996b5a04e741e7533aacbef9b",
+    "663.js.map": "ca812109d496d4eedbfa25f5e05d4c2b2c070934aeb5a29525603202a7f7bee0",
+    "663.js": "e27a57ca77cd2752700aca9a7e1c34a2b4775b587f68e33c640625695ff06995",
+    "CHANGELOG.md": "8d4918f14d0c860eb9dd9f618322b13d6d00fa1b0e8535c5646b56b0edffe230",
+    "locales/en-US/grafana-advisor-app.json": "d06902c958d8fe5557dd0e9ffacf410e1693024ebff448d968591eaf7cea2638",
+    "locales/es-ES/grafana-advisor-app.json": "17582a929b49d7f1690717eea254d0225bf07b95965968c7cfe1e2aec40ee961",
+    "locales/de-DE/grafana-advisor-app.json": "1a85f6666482b243bc0176c949c340e2b6a43dbba647c3652a638f708014f1ff",
+    "plugin.json": "106a0266581a7ac947c5fb1c01b6b77c19d6f69630538b62c39e5e0ff69b69c3",
+    "module.js": "7ba3ea96ae96e244c5ad65ccd1e02b14e1033dc792af035b9c7c837af825240c",
+    "img/logo.svg": "102e3e85fcbdc626417bfbdb8aaac9d9b34a900f43f7fce48dc4c929e04c9adb",
+    "199.js.map": "27edf395ae4e267a9d77ebc8587dafaa770e615c6b372f0df30e454899f62f77",
+    "867.js": "244711aee1441a3e40f2c0b51ca466a14f87c6f9be8ea9cbf82f217f51b6b982",
+    "199.js": "bd7274059299420fc29cc83fb0154aa695bc42377293ad395b59619f9b188e50",
+    "LICENSE": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+    "156.js.map": "57c97258e5783b5189f4a5e83a99c8c32098056ea0be3ad89913569ded64a22d",
+    "156.js": "4a813c6cafba7a569cc92b85b0b91368c272d06ce0a3f004d105f28dda2d1794",
+    "593.js": "24f976fd985a5cf25f21388efe8c2d62df301719b1ee9e977e36ca298587a91f",
+    "462.js.map": "8d2cb77046490ab325504ffb3d0dbc46895b0f67c02a581debe61eb45499ddd6",
+    "module.js.map": "4286efb96fd2d0aa2b58441be7d3bd68ff31475e4a5fcb426f3fc98402f7cbdf",
+    "462.js": "f20327a04463bf8fa5e6e0723b3e32b974a9c240b05bf710e4feba699eed380f"
+  }
+}
+-----BEGIN PGP SIGNATURE-----
+
+wsA+BAETCgBtBYJq7KBzCRB+TQxqcIhm50UUAAAAAAAcACBzYWx0QG5vdGF0
+aW9ucy5vcGVucGdwanMub3JnAMiiixfvq3hwkawR82QpeuD9o5wA2SANQpvX
+CXYCn9wWIQTzOyW2kQdOhGNlcPN+TQxqcIhm5wAAaVICBR/45FWkK5+XI9p8
+5Xqo4/GI7vG5TnKM/j/wWnaNwxmGKycPawRAUOi7NnG7BkXyIfsLZuNvc91a
+hihRTpaYIpmrAgkB68SPQdRubTVCZtHYNa2sNJU/KcOw7s6kBrKaLEhB8gyv
+qEU9NqkBhN7fL7o7N3wFn//gMmbcgUsDc+z3/Oc0t4Q=
+=Z2Np
+-----END PGP SIGNATURE-----

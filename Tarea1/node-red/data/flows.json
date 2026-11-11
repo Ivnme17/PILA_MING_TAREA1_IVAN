@@ -1,0 +1,1219 @@
+[
+    {
+        "id": "abdd2a876d4941c6",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c21a542bb5f0e525",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1519417fdbd5a1d3",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f31e1480f8d41f11",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "75f80b78b395aca7",
+        "type": "tab",
+        "label": "Flow 5",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "586c162d642e7bbd",
+        "type": "tab",
+        "label": "Flow 6",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d87740e33f59232a",
+        "type": "tab",
+        "label": "Flow 7",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "cc41e0414640fecd",
+        "type": "tab",
+        "label": "Flow 8",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c8f2a5d4085871ff",
+        "type": "mqtt-broker",
+        "name": "T1",
+        "broker": "mosquitto",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "node/inicio",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "Inicio Node-RED",
+        "birthMsg": {},
+        "closeTopic": "node/fin",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "Finalizo Node-RED",
+        "closeMsg": {},
+        "willTopic": "node/desconexion",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "Desconexion Node-RED",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "39e7e15fa841533a",
+        "type": "ui-base",
+        "name": "Mi panel de control",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "e23e22e1bbe7a521",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#fcfcfd",
+            "primary": "#0d74ce",
+            "bgPage": "#f9f9fb",
+            "groupBg": "#ffffff",
+            "groupOutline": "#d9d9e0"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "1f6c9fe28410f42b",
+        "type": "ui-page",
+        "name": "Página de datos",
+        "ui": "39e7e15fa841533a",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "e23e22e1bbe7a521",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "tabs": [],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "5b20fc79da76e92a",
+        "type": "ui-group",
+        "name": "Temperatura",
+        "page": "1f6c9fe28410f42b",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "tab": ""
+    },
+    {
+        "id": "dabd1c5a442326ec",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "database",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "6d87e277c5f5396b",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "mibucket",
+        "name": "influxdb",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "221cb54a1d3266e2",
+        "type": "inject",
+        "z": "abdd2a876d4941c6",
+        "name": "marca tiempo",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "9ce89f48f0fa23f6"
+            ]
+        ]
+    },
+    {
+        "id": "9ce89f48f0fa23f6",
+        "type": "function",
+        "z": "abdd2a876d4941c6",
+        "name": "function 1",
+        "func": "let fecha = new Date(msg.payload);\n\nmsg.fecha = fecha;\nmsg.payload = {\n    timestamp: msg.payload,\n    iso: fecha.toISOString(),\n    dia: fecha.getDate(),\n    mes: fecha.getMonth() + 1,\n    anio: fecha.getFullYear(),\n    hora: fecha.getHours(),\n    minutos: fecha.getMinutes(),\n    segundos: fecha.getSeconds()\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "9660561a1f972000"
+            ]
+        ]
+    },
+    {
+        "id": "9660561a1f972000",
+        "type": "function",
+        "z": "abdd2a876d4941c6",
+        "name": "function 2",
+        "func": "let f = msg.fecha;\nlet p = msg.payload;\n\nlet diasSemana = [\"domingo\", \"lunes\", \"martes\", \"miércoles\", \"jueves\", \"viernes\", \"sábado\"];\n\nmsg.payload = {\n    fecha: f.toLocaleDateString(\"es-ES\"),\n    hora: f.toLocaleTimeString(\"es-ES\"),\n    diaSemana: diasSemana[f.getDay()],\n    mensaje: \"Hoy es \" + diasSemana[f.getDay()] + \" \" + p.dia + \"/\" + p.mes + \"/\" + p.anio +\n             \" y son las \" + f.toLocaleTimeString(\"es-ES\"),\n    iso: p.iso\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 140,
+        "wires": [
+            [
+                "e76b93987448837d"
+            ]
+        ]
+    },
+    {
+        "id": "2a57d929164dcb05",
+        "type": "mqtt in",
+        "z": "abdd2a876d4941c6",
+        "name": "temperatura",
+        "topic": "sdb/aula211/temp",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c8f2a5d4085871ff",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "7c98fd4215cfc839",
+                "690b1f3e15bbba8f"
+            ]
+        ]
+    },
+    {
+        "id": "7c98fd4215cfc839",
+        "type": "function",
+        "z": "abdd2a876d4941c6",
+        "name": "function 3",
+        "func": "let lectura = Number(msg.payload)\nlet aula = msg.topic || \"Desconocida\"\n\nmsg.payload = {\n    ubicacion: aula,\n    medidas: {\n        celsius: lectura,\n        fahrenheit: Number((((lectura * 9)/5)+32).toFixed(2)),\n        kelvin: Number((lectura + 273.15).toFixed(2))\n    },\n    metadatos: {\n        timestamp: new Date().toISOString(),\n        origen: \"Node-RED\",\n        valido: !isNaN(lectura)\n    }\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 260,
+        "wires": [
+            [
+                "3481f1c91b07df22",
+                "f62260acc52efabf"
+            ]
+        ]
+    },
+    {
+        "id": "e76b93987448837d",
+        "type": "debug",
+        "z": "abdd2a876d4941c6",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "3481f1c91b07df22",
+        "type": "debug",
+        "z": "abdd2a876d4941c6",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "690b1f3e15bbba8f",
+        "type": "function",
+        "z": "abdd2a876d4941c6",
+        "name": "function 4",
+        "func": "let contador = context.get(\"contador\") || 0;\ncontador = contador +1;\n\nlet lista = context.get(\"historico\") || [];\nlista.push({\n    orden: contador,\n    valor: msg.payload,\n    hora: new Date().toLocaleTimeString()\n});\n\ncontext.set(\"contador\", contador);\ncontext.set(\"historico\", lista);\n\n\nmsg.payload = {\n    mensajeActual: msg.payload,\n    ejecuciones: contador,\n    ultimos: lista.slice(-3)\n};\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n// flow -> variable global\n// contexto -> variable publica\nflow.set(\"contador\",0);\ncontext.set(\"historico\",[])",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 400,
+        "wires": [
+            [
+                "dd86686f42629457"
+            ]
+        ]
+    },
+    {
+        "id": "dd86686f42629457",
+        "type": "debug",
+        "z": "abdd2a876d4941c6",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "bbdc3a8b10c8a78a",
+        "type": "catch",
+        "z": "abdd2a876d4941c6",
+        "name": "Excepciones",
+        "scope": [],
+        "uncaught": false,
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "6744668fadc62907"
+            ]
+        ]
+    },
+    {
+        "id": "6744668fadc62907",
+        "type": "debug",
+        "z": "abdd2a876d4941c6",
+        "name": "Errores",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "f62260acc52efabf",
+        "type": "influxdb out",
+        "z": "abdd2a876d4941c6",
+        "influxdb": "6d87e277c5f5396b",
+        "name": "Salida de datos",
+        "measurement": "temperatura",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "mibucket",
+        "x": 880,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "e0d84026e8846597",
+        "type": "complete",
+        "z": "abdd2a876d4941c6",
+        "name": "",
+        "scope": [
+            "f62260acc52efabf"
+        ],
+        "uncaught": false,
+        "x": 130,
+        "y": 520,
+        "wires": [
+            [
+                "93417afdbd681536"
+            ]
+        ]
+    },
+    {
+        "id": "93417afdbd681536",
+        "type": "debug",
+        "z": "abdd2a876d4941c6",
+        "name": "Exito",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "81c3acbc72e35747",
+        "type": "inject",
+        "z": "c21a542bb5f0e525",
+        "name": "nombre",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "  Juan Perez  ",
+        "payloadType": "str",
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "c632d12d796387e9",
+                "6784dfd4c0c98bd9"
+            ]
+        ]
+    },
+    {
+        "id": "c632d12d796387e9",
+        "type": "function",
+        "z": "c21a542bb5f0e525",
+        "name": "limpiar cadena",
+        "func": "let nombreLimpio = msg.payload.trim();\n\nlet partes = nombreLimpio.split(/\\s+/);\nnode.warn(\"nombreLimpio: \" + nombreLimpio);\nfunction sinTildes(texto) {\n    return texto.normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\");\n}\n\n// cogemos la inicial de la lista de cadenas\nlet inicial = partes[0].charAt(0);\n// Aqui obtenemos el apellido\nlet primerApellido = partes[1];\n//juntamos las dos para obtener el nombre con apellido y todo en minuscula\nlet username = sinTildes(inicial + primerApellido).toLowerCase();\n\n// Montar objeto JSON\nmsg.payload = {\n    nombreLimpio: nombreLimpio,\n    username: username,\n    partes: partes,\n    numPalabras: partes.length,\n    activo: true\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 360,
+        "wires": [
+            [
+                "96a3f4adef5d2b3b"
+            ]
+        ]
+    },
+    {
+        "id": "6784dfd4c0c98bd9",
+        "type": "debug",
+        "z": "c21a542bb5f0e525",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "96a3f4adef5d2b3b",
+        "type": "debug",
+        "z": "c21a542bb5f0e525",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "ca917282c34024e1",
+        "type": "inject",
+        "z": "1519417fdbd5a1d3",
+        "name": "producto1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"producto\": \"Teclado Mecánico\", \"precio\": 45.5, \"unidades\": 2, \"iva\": 21}",
+        "payloadType": "json",
+        "x": 240,
+        "y": 160,
+        "wires": [
+            [
+                "af8860559500e81d",
+                "e28b6a0a07e0fb4b"
+            ]
+        ]
+    },
+    {
+        "id": "715cbf55892d51b7",
+        "type": "inject",
+        "z": "1519417fdbd5a1d3",
+        "name": "producto2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"producto\": \"Ordenador portatil\", \"precio\": 40.5, \"unidades\": 3, \"iva\": 21}",
+        "payloadType": "json",
+        "x": 220,
+        "y": 240,
+        "wires": [
+            [
+                "af8860559500e81d",
+                "e28b6a0a07e0fb4b"
+            ]
+        ]
+    },
+    {
+        "id": "3a3a171b9ff7f18d",
+        "type": "inject",
+        "z": "1519417fdbd5a1d3",
+        "name": "producto3",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"producto\": \"Monitor AOC\", \"precio\": 219, \"unidades\":10, \"iva\": 21}",
+        "payloadType": "json",
+        "x": 240,
+        "y": 340,
+        "wires": [
+            [
+                "af8860559500e81d",
+                "e28b6a0a07e0fb4b"
+            ]
+        ]
+    },
+    {
+        "id": "de9f6d1280fca0ba",
+        "type": "inject",
+        "z": "1519417fdbd5a1d3",
+        "name": "producto4",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"producto\": \"Escritorio elevable\", \"precio\": 110, \"unidades\": 0, \"iva\": 21}",
+        "payloadType": "json",
+        "x": 260,
+        "y": 480,
+        "wires": [
+            [
+                "af8860559500e81d",
+                "e28b6a0a07e0fb4b"
+            ]
+        ]
+    },
+    {
+        "id": "e28b6a0a07e0fb4b",
+        "type": "function",
+        "z": "1519417fdbd5a1d3",
+        "name": "function 5",
+        "func": "let producto = msg.payload\nlet subtotal = 0\nlet importeIVA = 0\nlet total = 0\nif (producto[\"unidades\"] > 0){\n    // subtotal es cantidad por precio\n    subtotal = producto[\"unidades\"] * producto[\"precio\"]\n    importeIVA = producto[\"precio\"] * (producto[\"iva\"]/100)\n    // suma de subtotal e importe con IVA\n    total = subtotal + importeIVA\n\n}else{\n    return; // salir silenciosamente \n}\n// Montar objeto JSON\nmsg.payload = {\n    subtotal: subtotal.toFixed(2),\n    importeIVA: importeIVA.toFixed(2),\n    total: total.toFixed(2),\n};\nmsg.topic = \"factura emitida\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 240,
+        "wires": [
+            [
+                "dcd734b926cf3078"
+            ]
+        ]
+    },
+    {
+        "id": "dcd734b926cf3078",
+        "type": "debug",
+        "z": "1519417fdbd5a1d3",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "af8860559500e81d",
+        "type": "debug",
+        "z": "1519417fdbd5a1d3",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "4504d7204aa78d21",
+        "type": "function",
+        "z": "f31e1480f8d41f11",
+        "name": "function 6",
+        "func": "if (msg.topic === \"reset\") {\n    context.set(\"min\", null);\n    context.set(\"max\", null);\n    context.set(\"suma\", 0);\n    context.set(\"contador\", 0);\n\n    node.status({ fill: \"yellow\", shape: \"ring\", text: \"Estadísticas reiniciadas\" });\n    msg.payload = \"Estadísticas reiniciadas a cero\";\n    return msg;\n}\n\nconst valor = Number(msg.payload);\nif (msg.payload === \"\" || msg.payload === null || isNaN(valor)) {\n    node.warn(\"Payload no numérico ignorado: \" + msg.payload);\n    node.status({ fill: \"red\", shape: \"ring\", text: \"Valor no válido\" });\n    return null;\n}\n\nlet min = context.get(\"min\");\nlet max = context.get(\"max\");\nlet suma = context.get(\"suma\") || 0;\nlet contador = context.get(\"contador\") || 0;\n\nif (min === null || valor < min) min = valor;\nif (max === null || valor > max) max = valor;\nsuma += valor;\ncontador++;\n\ncontext.set(\"min\", min);\ncontext.set(\"max\", max);\ncontext.set(\"suma\", suma);\ncontext.set(\"contador\", contador);\n\nconst media = suma / contador;\nnode.status({\n    fill: \"green\",\n    shape: \"dot\",\n    text: \"Media: \" + media.toFixed(2) + \" | Lecturas: \" + contador\n});\n\nmsg.payload = {\n    valor: valor,\n    min: min,\n    max: max,\n    media: Number(media.toFixed(2)),\n    contador: contador\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set(\"min\", null);\ncontext.set(\"max\", null);\ncontext.set(\"suma\", 0);\ncontext.set(\"contador\", 0);",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "38f26d5c39d235be"
+            ]
+        ]
+    },
+    {
+        "id": "38f26d5c39d235be",
+        "type": "debug",
+        "z": "f31e1480f8d41f11",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "7881bfde7f7a6d48",
+        "type": "inject",
+        "z": "f31e1480f8d41f11",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "num",
+        "x": 270,
+        "y": 280,
+        "wires": [
+            [
+                "4504d7204aa78d21"
+            ]
+        ]
+    },
+    {
+        "id": "e28a502c13372b9f",
+        "type": "function",
+        "z": "75f80b78b395aca7",
+        "name": "function 7",
+        "func": "const valor = msg.payload\nif(isNaN(valor)){\n    node.warn(\"El umbral debe ser un número. Recibido: \" + msg.payload);\n    return null;\n}\nflow.set(\"umbral_alerta\", valor)\nmsg.payload = \"Umbral configurado a \" + valor + \" °C\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "dee7debc2e38587e"
+            ]
+        ]
+    },
+    {
+        "id": "199ae681025e7c8d",
+        "type": "function",
+        "z": "75f80b78b395aca7",
+        "name": "function 8",
+        "func": "let temperatura = Number(msg.payload)\nif(isNaN(temperatura)){\n    node.warn(\"La temperatura debe ser un número. Recibido: \" + msg.payload);\n    return null;\n}\n\nconst umbral = flow.get(\"umbral_alerta\") || 30;\n// En el caso de que la entrada numerica sea 0\n//if (umbral === undefined) umbral = 30;\nif (temperatura > umbral) {\n    msg.payload = \"ALERTA: \" + temperatura + \" °C supera el umbral de \" + umbral + \" °C\";\n} else {\n    msg.payload = \"OK: \" + temperatura + \" °C no supera el umbral de \" + umbral + \" °C\";\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 220,
+        "wires": [
+            [
+                "7d59a4987762158f"
+            ]
+        ]
+    },
+    {
+        "id": "2122a096086d9b50",
+        "type": "inject",
+        "z": "75f80b78b395aca7",
+        "name": "entrada numerica",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "23",
+        "payloadType": "num",
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "e28a502c13372b9f"
+            ]
+        ]
+    },
+    {
+        "id": "65ceef5a947554b9",
+        "type": "inject",
+        "z": "75f80b78b395aca7",
+        "name": "temperatura",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "25.0",
+        "payloadType": "num",
+        "x": 690,
+        "y": 220,
+        "wires": [
+            [
+                "199ae681025e7c8d"
+            ]
+        ]
+    },
+    {
+        "id": "dee7debc2e38587e",
+        "type": "debug",
+        "z": "75f80b78b395aca7",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7d59a4987762158f",
+        "type": "debug",
+        "z": "75f80b78b395aca7",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "fba3eaaddcbd475d",
+        "type": "inject",
+        "z": "586c162d642e7bbd",
+        "name": "pedidos",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"idPedido\": 107, \"pais\": \"ES\", \"importe\": 600, \"vip\": false}",
+        "payloadType": "json",
+        "x": 310,
+        "y": 280,
+        "wires": [
+            [
+                "e1ca70460c7c3ea5"
+            ]
+        ]
+    },
+    {
+        "id": "bb3502dad60fe84d",
+        "type": "debug",
+        "z": "586c162d642e7bbd",
+        "name": "Salida1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "dfffc9c3cdf44e2a",
+        "type": "debug",
+        "z": "586c162d642e7bbd",
+        "name": "Salida2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "90ae1721f6c4fefa",
+        "type": "debug",
+        "z": "586c162d642e7bbd",
+        "name": "Salida3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "e1ca70460c7c3ea5",
+        "type": "function",
+        "z": "586c162d642e7bbd",
+        "name": "function 9",
+        "func": "const pedido = msg.payload;\n\n// Validación básica\nif (typeof pedido !== \"object\" || pedido === null) {\n    node.warn(\"Se esperaba un objeto JSON. Recibido: \" + JSON.stringify(pedido));\n    return null;\n}\n\nconst importe = Number(pedido.importe);\nif (isNaN(importe)) {\n    node.warn(\"El importe no es numérico en el pedido \" + pedido.idPedido);\n    return null;\n}\n\nconst salida1 = [];  // Express (+ avisos a financiero)\nconst salida2 = [];  // Estándar\nconst salida3 = [];  // Internacional\n\n// Reglas 1-3: enrutado principal\nif (pedido.pais !== \"ES\") {\n    salida3.push(msg);\n} else if (pedido.vip === true || importe >= 100) {\n    salida1.push(msg);\n} else {\n    salida2.push(msg);\n}\n\n// Regla 4 (extra): copia de aviso a financiero por la Salida 1\nif (importe > 500) {\n    const aviso = RED.util.cloneMessage(msg);\n    aviso.topic = \"aviso_financiero\";\n    aviso.payload = {\n        aviso: \"Pedido de importe elevado (> 500 €)\",\n        idPedido: pedido.idPedido,\n        importe: importe,\n        pais: pedido.pais\n    };\n    salida1.push(aviso);\n}\n\nreturn [salida1, salida2, salida3];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 280,
+        "wires": [
+            [
+                "bb3502dad60fe84d",
+                "dfffc9c3cdf44e2a",
+                "90ae1721f6c4fefa"
+            ]
+        ]
+    },
+    {
+        "id": "4b121b2158734a7a",
+        "type": "inject",
+        "z": "d87740e33f59232a",
+        "name": "entrada",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[{\"id\": \"S1\", \"val\": 22}, {\"id\": \"S2\", \"val\": -999}, {\"id\": \"S3\", \"val\": 25}, {\"id\": \"S4\", \"val\": 19}]",
+        "payloadType": "json",
+        "x": 290,
+        "y": 240,
+        "wires": [
+            [
+                "5346d78533eb966c",
+                "3179cd25c4e96fa2"
+            ]
+        ]
+    },
+    {
+        "id": "3179cd25c4e96fa2",
+        "type": "function",
+        "z": "d87740e33f59232a",
+        "name": "function 10",
+        "func": "const lote = msg.payload;\n\nif (!Array.isArray(lote)) {\n    node.warn(\"Se esperaba un array de sensores. Recibido: \" + JSON.stringify(lote));\n    return null;\n}\n\nconst mensajes = [];\n\nfor (const sensor of lote) {\n    if (sensor.val === -999) {\n        // Fallo de lectura: aviso amarillo y sin mensaje\n        node.warn(\"Fallo de lectura en el sensor \" + sensor.id);\n        continue;\n    }\n\n    // Sensor válido: un mensaje independiente\n    const nuevo = RED.util.cloneMessage(msg);\n    nuevo.payload = sensor;\n    nuevo.topic = sensor.id;\n    mensajes.push(nuevo);\n}\n\nreturn [mensajes];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 240,
+        "wires": [
+            [
+                "9395713d6206b7b5"
+            ]
+        ]
+    },
+    {
+        "id": "9395713d6206b7b5",
+        "type": "debug",
+        "z": "d87740e33f59232a",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "5346d78533eb966c",
+        "type": "debug",
+        "z": "d87740e33f59232a",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f490d7e376f7ea28",
+        "type": "inject",
+        "z": "cc41e0414640fecd",
+        "name": "Entrada de datos",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"sonda\": \"CPD-Norte\", \"temp\": 28.5, \"humedad\":  45}",
+        "payloadType": "json",
+        "x": 200,
+        "y": 300,
+        "wires": [
+            [
+                "5506681db9f2f151",
+                "cb8a30d415d0a584"
+            ]
+        ]
+    },
+    {
+        "id": "bef452e2579fcc2c",
+        "type": "catch",
+        "z": "cc41e0414640fecd",
+        "name": "Excepción",
+        "scope": null,
+        "uncaught": false,
+        "x": 400,
+        "y": 660,
+        "wires": [
+            [
+                "b56378c5e39c3f39"
+            ]
+        ]
+    },
+    {
+        "id": "5506681db9f2f151",
+        "type": "function",
+        "z": "cc41e0414640fecd",
+        "name": "function 11",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 300,
+        "wires": [
+            [
+                "84a42b1485293b42"
+            ]
+        ]
+    },
+    {
+        "id": "b56378c5e39c3f39",
+        "type": "debug",
+        "z": "cc41e0414640fecd",
+        "name": "Errores",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "84a42b1485293b42",
+        "type": "debug",
+        "z": "cc41e0414640fecd",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "278fd0bcf7e825b9",
+        "type": "comment",
+        "z": "cc41e0414640fecd",
+        "name": "Comentario entrada",
+        "info": "Entrada tipo JSON",
+        "x": 170,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c61bdc151dfbe2dd",
+        "type": "comment",
+        "z": "cc41e0414640fecd",
+        "name": "Comentario función",
+        "info": "Guarda en context la última temperatura de cada sonda (usando un\ndiccionario/objeto indexado por el nombre de la sonda) para calcular la variación\n($\\Delta T = \\text{tempActual} - \\text{tempAnterior}$).\n● Si la subida brusca ( ) es mayor de 5 ºC de golpe, emite un∆𝑇\nnode.warn(\"Subida brusca de temperatura detectada\").\n● Incrementa en flow el contador global de tramas procesadas con éxito\n(flow.get(\"tramas_ok\"))",
+        "x": 690,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "a1776ad06deb0c7b",
+        "type": "comment",
+        "z": "cc41e0414640fecd",
+        "name": "Comentario catch",
+        "info": "Si falta sonda, temp o humedad, o si humedad no está entre 0 y 100, dispara un\nerror capturable por un nodo catch y actualiza el node.status en rojo",
+        "x": 560,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "cb8a30d415d0a584",
+        "type": "debug",
+        "z": "cc41e0414640fecd",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 380,
+        "wires": []
+    }
+]

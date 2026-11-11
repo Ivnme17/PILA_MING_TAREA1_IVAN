@@ -1,0 +1,39 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+{
+  "manifestVersion": "2.0.0",
+  "signatureType": "grafana",
+  "signedByOrg": "grafana",
+  "signedByOrgName": "Grafana Labs",
+  "plugin": "grafana-postgresql-datasource",
+  "version": "13.0.7",
+  "time": 1793810437084,
+  "keyId": "7e4d0c6a708866e7",
+  "files": {
+    "README.md": "81880bcd86dc72f6bd848ae81d8860ee2dc6666bfa4cdd28e0d5523871032efa",
+    "sql-query-editor.js.map": "91a8cc5bb30e9aac2f9073a8763366385441112a77350c6a5cce23978dc8e2b3",
+    "CHANGELOG.md": "998e643a82cfc8b4ad039e319cced73718e2cc9eb60561d0942c737b813719be",
+    "sql-query-editor.js": "d5996bb20283adc3976f3025c869b84aa7a153f167aa52ecabfa029d76d87abe",
+    "plugin.json": "6052201674237447470f22e224dfb8b867a1c956eca91b7787cb63fc03163ddf",
+    "module.js": "e646370fcaa596d07178e9da8c69920fce57e93311153400a7f2f93529b2a5c4",
+    "img/postgresql_logo.svg": "dc3100e92744f29bb331dbd00ea4a1da6aa603aaa726b994a47a1cf80f3387be",
+    "LICENSE": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+    "go_plugin_build_manifest": "c93ce3632d25b9c87922b1302389edc2fad06f3adb5e44a481ebba6be10bec85",
+    "module.js.LICENSE.txt": "ceb170eaa80002312bc3298e0d068917b8249823f83efd809135cd8c94672d6a",
+    "156.js.map": "38afa08f2f4d44f8b6bf07f1b4dd3736cf0465e68b503105e4580b291970fd32",
+    "156.js": "1768faa0b5deb4aa791e429bb8d43fafdfd6666ea068740b429f51e5bceb6f2a",
+    "gpx_grafana_postgresql_datasource_linux_amd64": "2d4c94136d2212b9d3159e0b9e114b9bb24bce29e894c6e6ee36942028428a57",
+    "module.js.map": "690549afc0e0c74bb096ba82d21cd6ba21e38601bb2e964fa28979d36a088109"
+  }
+}
+-----BEGIN PGP SIGNATURE-----
+
+wsA+BAETCgBtBYJq62AFCRB+TQxqcIhm50UUAAAAAAAcACBzYWx0QG5vdGF0
+aW9ucy5vcGVucGdwanMub3JnkvEIJcUfKOQow6zoVCJ/qi8ZeTM/OtGhM0V8
+PRtSuAUWIQTzOyW2kQdOhGNlcPN+TQxqcIhm5wAA2lICCI8AHJ05V1ekxpn3
+bhKhYWZa+NnxkY7L3Zqrpig5bPbUwKjCvzMDRJc0hspzIjJSiD0gJtL7DcAY
+1xBAwhjgNtUUAgkBLmQnKwgaIFXAc9qG6ikTtc1NWDNqPKyK1UpDxjDrNIBL
+apCfdoC293ayS2PMx0BXMAd/w0FrdHJuGebakdbwh0E=
+=VCjL
+-----END PGP SIGNATURE-----
